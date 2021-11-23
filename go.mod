@@ -1,4 +1,4 @@
-module github.com/Miniim98/MandatoryExercise2
+module github.com/Miniim98/MiniProject3
 
 go 1.17
 

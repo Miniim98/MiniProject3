@@ -1,0 +1,28 @@
+syntax = "proto3";
+package proto;
+option go_package = "https://github.com/Miniim98/MiniProject3/proto";
+
+service auction{
+    rpc Bid(BidRequest) returns (BidResponse) {}
+    rpc Result(ResultRequest) returns (ResultResponse) {}
+}
+
+message BidRequest {
+    int32 amount = 1;
+    int32 id = 2;
+}
+
+message BidResponse {
+    string result = 1;
+    int32 timestamp = 2;
+}
+
+message ResultRequest{}
+
+message ResultResponse{
+    bool ongoing = 1;
+    int32 result = 2;
+    int32 timestamp = 3;
+    int32 bidderId = 4;
+}
+
