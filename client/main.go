@@ -66,11 +66,13 @@ func HandleBid() {
 		fmt.Println("That was not a number!")
 		fmt.Println("Write EXIT to go back")
 		HandleBid()
+		return
 	}
 	if int32(bid) < currentBid {
 		fmt.Println("Please enter a higher bid than your last!")
 		fmt.Println("Write EXIT to go back")
 		HandleBid()
+		return
 	} else {
 		SendBidRequest(bid)
 		currentBid = int32(bid)
