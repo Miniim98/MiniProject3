@@ -1,0 +1,22 @@
+syntax = "proto3";
+package proto;
+option go_package = "https://github.com/Miniim98/MandatoryExercise2/proto";
+
+service DME{
+    rpc RequestAccess(stream AccesRequest) returns (stream AccessResponse){}
+}
+
+message AccesRequest{
+    Timestamp timestamp = 1;
+    int32 RequestingId = 2;
+}
+
+message AccessResponse{
+    Timestamp timestamp = 1;
+    bool responseGranted = 2;
+    int32 responseId = 3;
+}
+
+message Timestamp {
+    int32 events = 1;
+}
