@@ -2,7 +2,7 @@ How to start the program:
 
 Start 3 servers
 start a server by navigating to server and running:
-    go run . <id> <port> <length>
+    go run main.go <id> <port> <length>
 
 id: the id for this server. should be unique
 port: the port that this erver will listen on
@@ -11,9 +11,9 @@ length: the length of the auction. Amount of bids which can be placed
 
 Satrt clients
 start a client by navigating to client and running:
-    go run . <id>
+    go run main.go <id>
 
-id: the id for this client. should be unique
+id: the id for this client. should be unique and not equal to 0
 the terminal will prompt you to make bids
 
 The id for a node is used to mkae it's log that it writes to

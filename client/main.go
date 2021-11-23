@@ -19,11 +19,12 @@ var currentBid int32
 func main() {
 	ports := [3]string{":5000", ":5001", ":5002"}
 	tempid, err := strconv.Atoi(os.Args[1])
-	id = int32(tempid)
-	if err != nil {
-		fmt.Println("id must be an integer")
+
+	if err != nil || tempid == 0 {
+		fmt.Println("id must be an integer different from 0")
 		os.Exit(1)
 	}
+	id = int32(tempid)
 	//Dialing the server
 	for _, port := range ports {
 		conn, err := grpc.Dial(port, grpc.WithInsecure(), grpc.WithBlock())
@@ -86,6 +87,7 @@ func SendBidRequest(amount int) {
 		response, err := connection.Bid(context.Background(), &pb.BidRequest{Amount: int32(amount), Id: id})
 		if err != nil {
 			log.Printf("Trouble sending bid request: %v", err)
+			return
 		}
 
 		if response.Result != "succes" {

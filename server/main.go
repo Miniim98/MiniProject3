@@ -60,6 +60,8 @@ func (b *highestBid) WriteHighestBid(newId int32, newBid int32) {
 }
 
 func main() {
+	ongoing = true
+	bid.WriteHighestBid(0, 0)
 	Time.time = 0
 	args := os.Args[1:]
 	if len(args) < 3 {
@@ -82,7 +84,7 @@ func main() {
 	}
 	length = templength
 
-	listenaddr := args[1]
+	listenaddr = args[1]
 	SetUpLog()
 
 	lis, err := net.Listen("tcp", listenaddr)
@@ -102,13 +104,13 @@ func main() {
 }
 
 func (s *server) Bid(ctx context.Context, in *pb.BidRequest) (*pb.BidResponse, error) {
-	var result string
+	var result = "succes"
 	var error error
 
 	//possible "extension": cheking if previous bid was made by same bidder
-	if bid.amount <= in.Amount {
+	if bid.amount >= in.Amount {
 		result = "failure"
-		error = errors.New("This bid is too low")
+		error = errors.New("this bid is too low")
 	} else {
 		bid.WriteHighestBid(in.Id, in.Amount)
 	}
