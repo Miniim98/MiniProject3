@@ -13,8 +13,8 @@ message BidRequest {
 }
 
 message BidResponse {
-    string result = 1;
     int32 timestamp = 2;
+    bool result = 3;
 }
 
 message ResultRequest{}

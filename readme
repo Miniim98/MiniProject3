@@ -16,4 +16,4 @@ start a client by navigating to client and running:
 id: the id for this client. should be unique and not equal to 0
 the terminal will prompt you to make bids
 
-The id for a node is used to mkae it's log that it writes to
+The id for a node is used to make it's log that it writes to

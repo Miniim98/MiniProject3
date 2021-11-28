@@ -1,0 +1,11 @@
+2021/11/28 15:57:35 Trouble sending bid request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5001: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det."
+2021/11/28 15:57:48 Trouble sending result request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5001: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det." /n
+2021/11/28 15:58:37 Trouble sending bid request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5000: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det."
+2021/11/28 15:58:39 Trouble sending bid request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5001: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det."
+2021/11/28 15:58:39 An insufficient amount of responses were received. It is not possible to write to the servers
+2021/11/28 15:58:39 I received 1 responses
+2021/11/28 15:58:51 Trouble sending result request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5000: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det." /n
+2021/11/28 15:58:53 Trouble sending result request: rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :5001: connectex: Der kunne ikke oprettes forbindelse, fordi destinationscomputeren aktivt nægtede det." /n
+2021/11/28 15:58:53 an insuffucuient amount of responses was received. it is not possible to read from the servers
+2021/11/28 15:58:53 I received 1 responses
+2021/11/28 15:58:53 

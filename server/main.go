@@ -3,10 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-
-	//"io"
 	"log"
-	//"math"
 	"errors"
 	"net"
 	"os"
@@ -38,26 +35,6 @@ var id int
 var bid highestBid
 var length int
 var ongoing bool
-
-func (c *timestamp) UpTimestamp() {
-	c.mu.Lock()
-	defer c.mu.Unlock()
-	Time.time++
-	if Time.time == int32(length) {
-		ongoing = false
-	}
-}
-
-func (b *highestBid) WriteHighestBid(newId int32, newBid int32) {
-	if !ongoing {
-		return
-	}
-	b.mu.Lock()
-	defer b.mu.Unlock()
-	b.amount = newBid
-	b.id = newId
-	Time.UpTimestamp()
-}
 
 func main() {
 	ongoing = true
@@ -103,13 +80,34 @@ func main() {
 
 }
 
+func (c *timestamp) UpTimestamp() {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	Time.time++
+	if Time.time == int32(length) {
+		ongoing = false
+	}
+}
+
+func (b *highestBid) WriteHighestBid(newId int32, newBid int32) {
+	if !ongoing {
+		return
+	}
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	b.amount = newBid
+	b.id = newId
+	Time.UpTimestamp()
+}
+
 func (s *server) Bid(ctx context.Context, in *pb.BidRequest) (*pb.BidResponse, error) {
-	var result = "succes"
+	log.Printf("User %d is attempting to bid %d", in.Id, in.Amount)
+	var result = true
 	var error error
 
 	//possible "extension": cheking if previous bid was made by same bidder
 	if bid.amount >= in.Amount {
-		result = "failure"
+		result = false
 		error = errors.New("this bid is too low")
 	} else {
 		bid.WriteHighestBid(in.Id, in.Amount)
@@ -119,14 +117,15 @@ func (s *server) Bid(ctx context.Context, in *pb.BidRequest) (*pb.BidResponse, e
 }
 
 func (s *server) Result(ctx context.Context, in *pb.ResultRequest) (*pb.ResultResponse, error) {
+	log.Println("A user is requesting results")
 	return &pb.ResultResponse{Ongoing: ongoing, Result: bid.amount,
 		Timestamp: Time.time, BidderId: bid.id}, nil
 }
 
 func SetUpLog() {
-	var filename = "serverLog" + strconv.Itoa(id)
+	var filename = "serverLog" + strconv.Itoa(id) + ".txt"
 	LOG_FILE := filename
-	logFile, err := os.OpenFile(LOG_FILE, os.O_APPEND|os.O_RDWR|os.O_CREATE, 0644)
+	logFile, err := os.OpenFile(LOG_FILE, os.O_APPEND|os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Panic(err)
 	}

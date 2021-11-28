@@ -1,0 +1,4 @@
+2021/11/28 15:56:59 User 1 is attempting to bid 50
+2021/11/28 15:57:03 A user is requesting results
+2021/11/28 15:57:13 A user is requesting results
+2021/11/28 15:57:18 User 2 is attempting to bid 100
